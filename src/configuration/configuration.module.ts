@@ -9,15 +9,13 @@ import { ConfigurationService } from "./configuration.service"
       useFactory: (configService: ConfigService) =>
         ConfigurationService.getTypeOrmConfig(configService).defaultConfig,
       inject: [ConfigService],
-      name: "default",
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) =>
         ConfigurationService.getTypeOrmConfig(configService).adminConfig,
       inject: [ConfigService],
-      name: "admin",
     }),
-    ConfigModule,
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   providers: [ConfigurationService],
 })

@@ -18,6 +18,7 @@ export class ConfigurationService {
       migrationsRun: Boolean(configService.getOrThrow<boolean>("DB_MIGRATIONS_RUN")),
       retryAttempts: configService.get<number>("DB_RETRY_ATTEMPTS") || 3,
       retryDelay: configService.get<number>("DB_RETRY_DELAY") || 1000,
+      autoLoadEntities: true,
     }
 
     return {

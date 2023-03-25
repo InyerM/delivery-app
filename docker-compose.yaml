@@ -6,11 +6,11 @@ services:
       - DATABASE_HOST=localhost
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=default
+      - POSTGRES_DB=defaultdb
     ports:
       - '5432:5432'
     volumes: 
       - postgres:/var/lib/postgresql/data
-      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sqL
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 volumes:
   postgres:
