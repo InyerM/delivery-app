@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common"
 import { ConfigService } from "@nestjs/config"
 import { TypeOrmModuleOptions } from "@nestjs/typeorm"
 import { GetTypeOrmConfigResponse } from "./interfaces"
+import { adminEntities } from "@detabases/admin/entities"
+import { defaultEntities } from "@detabases/default/entities"
 
 @Injectable()
 export class ConfigurationService {
@@ -28,7 +30,7 @@ export class ConfigurationService {
         database: configService.getOrThrow<string>("DB_ADMIN_DATABASE"),
         username: configService.getOrThrow<string>("DB_ADMIN_USERNAME"),
         password: configService.getOrThrow<string>("DB_ADMIN_PASSWORD"),
-        entities: [configService.getOrThrow<string>("DB_ADMIN_ENTITIES_DIR")],
+        entities: adminEntities,
         migrations: [configService.getOrThrow<string>("DB_ADMIN_MIGRATIONS_DIR")],
         subscribers: [configService.getOrThrow<string>("DB_ADMIN_SUBSCRIBERS_DIR")],
       },
@@ -38,7 +40,7 @@ export class ConfigurationService {
         database: configService.getOrThrow<string>("DB_DATABASE"),
         username: configService.getOrThrow<string>("DB_USERNAME"),
         password: configService.getOrThrow<string>("DB_PASSWORD"),
-        entities: [configService.getOrThrow<string>("DB_ENTITIES_DIR")],
+        entities: defaultEntities,
         migrations: [configService.getOrThrow<string>("DB_MIGRATIONS_DIR")],
         subscribers: [configService.getOrThrow<string>("DB_SUBSCRIBERS_DIR")],
       },

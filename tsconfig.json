@@ -16,6 +16,14 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@detabases/*": ["src/configuration/databases/*"],
+      "@common/*": ["src/common/*"],
+      "@config/*": ["src/configuration/*"],
+      "@common-db/*": ["src/configuration/databases/common/*"],
+      "@admin-db/*": ["src/configuration/databases/admin/*"],
+      "@user-db/*": ["src/configuration/databases/user/*"],
+    }
   }
 }
