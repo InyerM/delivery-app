@@ -1,11 +1,16 @@
 import {
+  AfterUpdate,
   BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm"
 import { UserStatusEnum, UserTypeEnum } from "@common-db/enums"
+import * as bcrypt from "bcrypt"
+import { CountryCodeAlpha3Enum, PhoneCountryPrefixes } from "@common/enums"
+import { Exclude } from "class-transformer"
 
 export abstract class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn("uuid", {
@@ -21,6 +26,7 @@ export abstract class UserEntity extends BaseEntity {
   })
   email: string
 
+  @Exclude()
   @Column({
     name: "password",
     length: 100,
@@ -38,19 +44,19 @@ export abstract class UserEntity extends BaseEntity {
 
   @Column({
     name: "phoneCountryCode",
-    length: 5,
-    type: "varchar",
-    nullable: true,
+    type: "enum",
+    enum: CountryCodeAlpha3Enum,
+    default: CountryCodeAlpha3Enum.COLOMBIA,
   })
-  phoneCountryCode: string
+  phoneCountryCode: CountryCodeAlpha3Enum
 
   @Column({
-    name: "phoneDialCode",
-    length: 5,
-    type: "varchar",
-    nullable: true,
+    name: "phoneCountryPrefix",
+    type: "enum",
+    enum: PhoneCountryPrefixes,
+    default: PhoneCountryPrefixes.COLOMBIA,
   })
-  phoneDialCode: string
+  phoneCountryPrefix: PhoneCountryPrefixes
 
   @Column({
     name: "lat",
@@ -106,4 +112,14 @@ export abstract class UserEntity extends BaseEntity {
     type: "timestamp",
   })
   updatedAt: Date
+
+  @BeforeInsert()
+  hashPassword = async (): Promise<void> => {
+    this.password = await bcrypt.hash(this.password, 10)
+  }
+
+  @AfterUpdate()
+  updateUserType = (): void => {
+    this.userTypeUpdatedAt = new Date()
+  }
 }
