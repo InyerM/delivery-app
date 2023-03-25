@@ -1,23 +1,11 @@
-import {
-  AfterUpdate,
-  BaseEntity,
-  BeforeInsert,
-  Column,
-  CreateDateColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm"
+import { AfterUpdate, BeforeInsert, Column } from "typeorm"
 import { UserStatusEnum, UserTypeEnum } from "@common-db/enums"
 import * as bcrypt from "bcrypt"
 import { CountryCodeAlpha3Enum, PhoneCountryPrefixes } from "@common/enums"
 import { Exclude } from "class-transformer"
+import { AbstractEntity } from "./abstract.entity"
 
-export abstract class UserEntity extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid", {
-    name: "id",
-  })
-  id: string
-
+export abstract class UserEntity extends AbstractEntity {
   @Column({
     name: "email",
     length: 50,
@@ -100,18 +88,6 @@ export abstract class UserEntity extends BaseEntity {
     nullable: true,
   })
   userTypeUpdatedAt: Date
-
-  @CreateDateColumn({
-    name: "createdAt",
-    type: "timestamp",
-  })
-  createdAt: Date
-
-  @UpdateDateColumn({
-    name: "updatedAt",
-    type: "timestamp",
-  })
-  updatedAt: Date
 
   @BeforeInsert()
   hashPassword = async (): Promise<void> => {
