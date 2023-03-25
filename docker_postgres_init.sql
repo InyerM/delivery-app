@@ -1,0 +1,9 @@
+CREATE USER defaultuser WITH PASSWORD 'defaultuser123';
+CREATE USER adminuser WITH PASSWORD 'adminuser123';
+CREATE DATABASE admindb
+    WITH
+    OWNER = adminuser;
+GRANT ALL PRIVILEGES ON DATABASE admindb TO adminuser;
+GRANT ALL PRIVILEGES ON DATABASE defaultdb TO defaultuser;
+ALTER USER adminuser WITH SUPERUSER;
+ALTER USER defaultuser WITH SUPERUSER;
