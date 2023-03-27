@@ -1,0 +1,22 @@
+export enum BookingStatusEnum {
+  APPROVED = "APPROVED",
+  PENDING = "PENDING",
+  REJECTED = "REJECTED",
+  CANCELLED_BY_USER = "CANCELLED_BY_USER",
+  CANCELLED_BY_DRIVER = "CANCELLED_BY_DRIVER",
+  COMPLETED = "COMPLETED",
+  EXPIRED = "EXPIRED",
+  READY_FOR_DELIVERY = "READY_FOR_DELIVERY",
+  IN_DELIVERY = "IN_DELIVERY",
+}
+
+export enum DistanceTypeEnum {
+  MILES = "miles",
+  KILOMETERS = "km",
+}
+
+export enum PaymentStatusEnum {
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED",
+  FAILED = "FAILED",
+}

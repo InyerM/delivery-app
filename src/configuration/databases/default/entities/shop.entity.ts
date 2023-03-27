@@ -27,5 +27,5 @@ export class Shop extends AbstractEntity {
   @OneToMany(() => ShopReview, (shopReview) => shopReview.id, {
     cascade: true,
   })
-  shopReviews: number[]
+  shopReviews: ShopReview[]
 }

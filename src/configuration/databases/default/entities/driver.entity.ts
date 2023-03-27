@@ -39,5 +39,5 @@ export class Driver extends AbstractEntity {
   @OneToMany(() => DriverReview, (driverReviews) => driverReviews.id, {
     cascade: true,
   })
-  driverReviews: number[]
+  driverReviews: DriverReview[]
 }

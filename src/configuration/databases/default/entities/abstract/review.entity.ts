@@ -1,18 +1,18 @@
-import { Column, JoinColumn, OneToOne } from "typeorm"
-import { AbstractEntity } from "./abstract.entity"
-import { User } from "@detabases/default/entities"
+import { Column, JoinColumn, ManyToOne, OneToOne } from "typeorm"
+import { AbstractEntity } from "@common-db/entities"
+import { User, Booking } from "@detabases/default/entities"
 
 export abstract class ReviewEntity extends AbstractEntity {
-  @OneToOne(() => User, (user) => user.id, { cascade: true })
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: "authorId" })
   author: User
 
+  @OneToOne(() => Booking, (booking) => booking.id, { cascade: true })
+  @JoinColumn({ name: "bookingId" })
+  booking: Booking
+
   @Column({ name: "authorId" })
   authorId: string
-
-  // @OneToOne(() => Booking, (booking) => booking.id, { cascade: true })
-  // @JoinColumn({ name: "bookingId" })
-  // booking: Booking
 
   @Column({ name: "bookingId" })
   bookingId: string
