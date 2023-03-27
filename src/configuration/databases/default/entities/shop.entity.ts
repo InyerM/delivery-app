@@ -1,12 +1,13 @@
 import { AbstractEntity } from "@detabases/common/entities"
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm"
-import { UserDefault } from "./user-default.entity"
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm"
+import { User } from "./user.entity"
+import { ShopCalification } from "./shop-calification.entity"
 
 @Entity({ name: "Shop" })
 export class Shop extends AbstractEntity {
-  @OneToOne(() => UserDefault, (user) => user.id, { cascade: true })
+  @OneToOne(() => User, (user) => user.id, { cascade: true })
   @JoinColumn({ name: "userId" })
-  user: UserDefault
+  user: User
 
   @Column({ name: "userId" })
   userId: string
@@ -22,4 +23,9 @@ export class Shop extends AbstractEntity {
 
   @Column({ name: "productType", type: "varchar" })
   productType: number
+
+  @OneToMany(() => ShopCalification, (shopCalification) => shopCalification.id, {
+    cascade: true,
+  })
+  shopCalifications: number[]
 }

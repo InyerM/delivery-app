@@ -1,14 +1,20 @@
 export enum UserStatusEnum {
-  ACTIVE = "active",
-  INACTIVE = "inactive",
-  PENDING = "pending",
-  BANNED = "banned",
-  DELETED = "deleted",
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+  PENDING = "PENDING",
+  BANNED = "BANNED",
+  DELETED = "DELETED",
 }
 
 export enum UserTypeEnum {
-  ADMIN = "admin",
-  EATER = "eater",
-  RESTAURANT = "restaurant",
-  DRIVER = "driver",
+  ADMIN = "ADMIN",
+  EATER = "EATER",
+  RESTAURANT = "RESTAURANT",
+  DRIVER = "DRIVER",
+}
+
+export enum DeviceTypeEnum {
+  ANDROID = "ANDROID",
+  IOS = "IOS",
+  WEB = "WEB",
 }

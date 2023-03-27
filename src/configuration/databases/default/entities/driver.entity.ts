@@ -1,14 +1,14 @@
 import { AbstractEntity } from "@detabases/common/entities"
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm"
-import { UserDefault } from "./user-default.entity"
+import { User } from "./user.entity"
 import { DriverStatusEnum } from "../enums"
 import { DriverCalification } from "./driver-calification.entity"
 
 @Entity({ name: "Driver" })
 export class Driver extends AbstractEntity {
-  @OneToOne(() => UserDefault, (user) => user.id, { cascade: true })
+  @OneToOne(() => User, (user) => user.id, { cascade: true })
   @JoinColumn({ name: "userId" })
-  user: UserDefault
+  user: User
 
   @Column({ name: "userId" })
   userId: string

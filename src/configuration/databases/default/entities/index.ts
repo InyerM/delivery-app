@@ -1,2 +1,2 @@
-export * from "./user-default.entity"
+export * from "./user.entity"
 export * from "./default-entities"

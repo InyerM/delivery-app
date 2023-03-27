@@ -1,8 +1,10 @@
 import { MixedList, EntitySchema } from "typeorm"
-import { UserAdmin } from "./user-admin.entity"
-import { UserProfileAdmin } from "./user-profile.entity"
+import { User } from "./user-admin.entity"
+import { UserProfile } from "./user-profile.entity"
+import { UserLogin } from "./user-login.entity"
 
 export const adminEntities: MixedList<Function | string | EntitySchema> = [
-  UserAdmin,
-  UserProfileAdmin,
+  User,
+  UserProfile,
+  UserLogin,
 ]
