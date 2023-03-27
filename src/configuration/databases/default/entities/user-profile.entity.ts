@@ -4,7 +4,7 @@ import { UserDefault } from "./user-default.entity"
 
 @Entity({ name: "UserProfile" })
 export class UserProfileDefault extends UserProfileEntity {
-  @OneToOne(() => UserDefault, (userDefault) => userDefault.id)
+  @OneToOne(() => UserDefault, (user) => user.id, { cascade: true })
   @JoinColumn({ name: "userId" })
   user: UserDefault
 

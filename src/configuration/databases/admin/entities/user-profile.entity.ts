@@ -4,7 +4,7 @@ import { UserAdmin } from "./user-admin.entity"
 
 @Entity({ name: "UserProfile" })
 export class UserProfileAdmin extends UserProfileEntity {
-  @OneToOne(() => UserAdmin, (userAdmin) => userAdmin.id)
+  @OneToOne(() => UserAdmin, (user) => user.id, { cascade: true })
   @JoinColumn({ name: "userId" })
   user: UserAdmin
 

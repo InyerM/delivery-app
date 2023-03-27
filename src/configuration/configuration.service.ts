@@ -26,7 +26,6 @@ export class ConfigurationService {
       adminConfig: {
         ...config,
         name: "admin",
-        entityPrefix: "Admin",
         database: configService.getOrThrow<string>("DB_ADMIN_DATABASE"),
         username: configService.getOrThrow<string>("DB_ADMIN_USERNAME"),
         password: configService.getOrThrow<string>("DB_ADMIN_PASSWORD"),
@@ -37,7 +36,6 @@ export class ConfigurationService {
       defaultConfig: {
         ...config,
         name: "default",
-        entityPrefix: "Default",
         database: configService.getOrThrow<string>("DB_DATABASE"),
         username: configService.getOrThrow<string>("DB_USERNAME"),
         password: configService.getOrThrow<string>("DB_PASSWORD"),
