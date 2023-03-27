@@ -6,6 +6,7 @@ import { Driver } from "./driver.entity"
 import { ShopCalification } from "./shop-calification.entity"
 import { DriverCalification } from "./driver-calification.entity"
 import { UserLogin } from "./user-login.entity"
+import { UserVerifiedInfo } from "./user-verified-info.entity"
 
 export const defaultEntities: MixedList<Function | string | EntitySchema> = [
   Driver,
@@ -15,4 +16,5 @@ export const defaultEntities: MixedList<Function | string | EntitySchema> = [
   User,
   UserProfile,
   UserLogin,
+  UserVerifiedInfo,
 ]
