@@ -2,7 +2,7 @@ import { AbstractEntity } from "@detabases/common/entities"
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm"
 import { User } from "./user.entity"
 import { DriverStatusEnum } from "../enums"
-import { DriverCalification } from "./driver-calification.entity"
+import { DriverReview } from "./driver-review.entity"
 
 @Entity({ name: "Driver" })
 export class Driver extends AbstractEntity {
@@ -36,8 +36,8 @@ export class Driver extends AbstractEntity {
   @Column({ name: "driverStatusReason", type: "varchar", nullable: true })
   driverStatusReason: string
 
-  @OneToMany(() => DriverCalification, (driverCalification) => driverCalification.id, {
+  @OneToMany(() => DriverReview, (driverReviews) => driverReviews.id, {
     cascade: true,
   })
-  driverCalifications: number[]
+  driverReviews: number[]
 }

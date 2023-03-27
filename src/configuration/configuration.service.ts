@@ -21,6 +21,7 @@ export class ConfigurationService {
       retryAttempts: configService.get<number>("DB_RETRY_ATTEMPTS") || 3,
       retryDelay: configService.get<number>("DB_RETRY_DELAY") || 1000,
       autoLoadEntities: true,
+      migrationsTableName: "TypeormMigrations",
     }
     return {
       adminConfig: {

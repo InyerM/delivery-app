@@ -1,7 +1,7 @@
 import { AbstractEntity } from "@detabases/common/entities"
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm"
 import { User } from "./user.entity"
-import { ShopCalification } from "./shop-calification.entity"
+import { ShopReview } from "./shop-review.entity"
 
 @Entity({ name: "Shop" })
 export class Shop extends AbstractEntity {
@@ -24,8 +24,8 @@ export class Shop extends AbstractEntity {
   @Column({ name: "productType", type: "varchar" })
   productType: number
 
-  @OneToMany(() => ShopCalification, (shopCalification) => shopCalification.id, {
+  @OneToMany(() => ShopReview, (shopReview) => shopReview.id, {
     cascade: true,
   })
-  shopCalifications: number[]
+  shopReviews: number[]
 }
