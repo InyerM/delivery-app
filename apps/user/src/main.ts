@@ -1,9 +1,9 @@
 import { NestFactory } from "@nestjs/core";
 import { UserModule } from "./user.module";
 import { ValidationPipe } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { config } from "dotenv";
 
-const configService: ConfigService = new ConfigService();
+config();
 
 async function bootstrap() {
   const app = await NestFactory.create(UserModule, { snapshot: true });
@@ -14,6 +14,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(configService.getOrThrow<number>("USER_PORT"));
+  await app.listen(process.env.USER_PORT);
 }
 bootstrap();

@@ -1,9 +1,9 @@
 import { NestFactory } from "@nestjs/core";
 import { DriverModule } from "./driver.module";
 import { ValidationPipe } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { config } from "dotenv";
 
-const configService: ConfigService = new ConfigService();
+config();
 
 async function bootstrap() {
   const app = await NestFactory.create(DriverModule, { snapshot: true });
@@ -14,6 +14,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(configService.getOrThrow<number>("DRIVER_PORT"));
+  await app.listen(process.env.DRIVER_PORT);
 }
 bootstrap();

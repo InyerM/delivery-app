@@ -1,9 +1,9 @@
 import { NestFactory } from "@nestjs/core";
 import { ShopModule } from "./shop.module";
 import { ValidationPipe } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { config } from "dotenv";
 
-const configService: ConfigService = new ConfigService();
+config();
 
 async function bootstrap() {
   const app = await NestFactory.create(ShopModule, { snapshot: true });
@@ -14,6 +14,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(configService.getOrThrow<number>("SHOP_PORT"));
+  await app.listen(process.env.SHOP_PORT);
 }
 bootstrap();
