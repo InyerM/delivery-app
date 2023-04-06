@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DriverController } from './driver.controller';
-import { DriverService } from './driver.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { DriverController } from "./driver.controller";
+import { DriverService } from "./driver.service";
 
-describe('DriverController', () => {
+describe("DriverController", () => {
   let driverController: DriverController;
 
   beforeEach(async () => {
@@ -14,9 +14,9 @@ describe('DriverController', () => {
     driverController = app.get<DriverController>(DriverController);
   });
 
-  describe('root', () => {
+  describe("root", () => {
     it('should return "Hello World!"', () => {
-      expect(driverController.getHello()).toBe('Hello World!');
+      expect(driverController.getHello()).toBe("Hello World!");
     });
   });
 });

@@ -1,25 +1,25 @@
-import { Column, JoinColumn, ManyToOne, OneToOne } from "typeorm"
-import { AbstractEntity } from "@app/shared/entities/"
-import { User, Booking } from "@detabases/default/entities"
+import { Column, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+import { AbstractEntity } from "@app/shared/entities/";
+import { User, Booking } from "@detabases/default/entities";
 
 export abstract class ReviewEntity extends AbstractEntity {
   @ManyToOne(() => User, (user) => user.id)
   @JoinColumn({ name: "authorId" })
-  author: User
+  author: User;
 
   @OneToOne(() => Booking, (booking) => booking.id, { cascade: true })
   @JoinColumn({ name: "bookingId" })
-  booking: Booking
+  booking: Booking;
 
   @Column({ name: "authorId" })
-  authorId: string
+  authorId: string;
 
   @Column({ name: "bookingId" })
-  bookingId: string
+  bookingId: string;
 
   @Column({ name: "calification", type: "float" })
-  calification: number
+  calification: number;
 
   @Column({ name: "comment", type: "text" })
-  comment: string
+  comment: string;
 }

@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { RestaurantController } from './restaurant.controller';
-import { RestaurantService } from './restaurant.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { RestaurantController } from "./restaurant.controller";
+import { RestaurantService } from "./restaurant.service";
 
-describe('RestaurantController', () => {
+describe("RestaurantController", () => {
   let restaurantController: RestaurantController;
 
   beforeEach(async () => {
@@ -14,9 +14,9 @@ describe('RestaurantController', () => {
     restaurantController = app.get<RestaurantController>(RestaurantController);
   });
 
-  describe('root', () => {
+  describe("root", () => {
     it('should return "Hello World!"', () => {
-      expect(restaurantController.getHello()).toBe('Hello World!');
+      expect(restaurantController.getHello()).toBe("Hello World!");
     });
   });
 });

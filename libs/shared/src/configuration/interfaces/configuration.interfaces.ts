@@ -1,6 +1,6 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm"
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 export interface GetTypeOrmConfigResponse {
-  adminConfig: TypeOrmModuleOptions
-  defaultConfig: TypeOrmModuleOptions
+  adminConfig: TypeOrmModuleOptions;
+  defaultConfig: TypeOrmModuleOptions;
 }
