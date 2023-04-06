@@ -1,4 +1,4 @@
-import { ConfigurationModule } from "./configuration/configuration.module"
+import { ConfigurationModule } from "../../../libs/shared/src/configuration/configuration.module"
 import { CommonModule } from "./common/common.module"
 import { Module } from "@nestjs/common"
 
