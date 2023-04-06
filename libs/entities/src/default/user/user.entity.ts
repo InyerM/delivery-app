@@ -6,7 +6,7 @@ import { Driver } from "../driver/driver.entity";
 import { UserVerifiedInfo } from "../user-verified-info/user-verified-info.entity";
 import { ShopReview } from "../shop-review/shop-review.entity";
 import { DriverReview } from "../driver-review/driver-review.entity";
-import { UserEntity } from "@app/entities/abstract";
+import { UserEntity } from "@app/entities/abstract/user.entity";
 
 @Entity({ name: "User" })
 @Unique(["phoneNumber", "phoneCountryPrefix"])

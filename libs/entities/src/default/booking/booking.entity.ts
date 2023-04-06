@@ -3,7 +3,7 @@ import { User } from "../user/user.entity";
 import { Shop } from "../shop/shop.entity";
 import { BookingLocation } from "../booking-location/booking-location.entity";
 import { Driver } from "../driver/driver.entity";
-import { BaseEntity } from "@app/entities/abstract";
+import { BaseEntity } from "@app/entities/abstract/base-entity.entity";
 import {
   BookingStatusEnum,
   DistanceTypeEnum,

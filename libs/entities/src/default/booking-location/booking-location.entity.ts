@@ -1,4 +1,4 @@
-import { BaseEntity } from "@app/entities/abstract";
+import { BaseEntity } from "@app/entities/abstract/base-entity.entity";
 import { Column, Entity } from "typeorm";
 
 @Entity({ name: "BookingLocation" })

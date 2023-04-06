@@ -1,4 +1,4 @@
-import { UserLoginEntity } from "@app/entities/abstract";
+import { UserLoginEntity } from "@app/entities/abstract/user-login.entity";
 import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
 

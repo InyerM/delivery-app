@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
-import { UserLoginEntity } from "@app/entities/abstract";
+import { UserLoginEntity } from "@app/entities/abstract/user-login.entity";
 
 @Entity({ name: "UserLogin" })
 export class UserLogin extends UserLoginEntity {

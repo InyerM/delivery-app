@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
-import { BaseEntity } from "@app/entities/abstract";
+import { BaseEntity } from "@app/entities/abstract/base-entity.entity";
 
 @Entity({ name: "UserVerifiedInfo" })
 export class UserVerifiedInfo extends BaseEntity {

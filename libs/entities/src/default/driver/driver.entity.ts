@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
 import { DriverReview } from "../driver-review/driver-review.entity";
-import { BaseEntity } from "@app/entities/abstract";
+import { BaseEntity } from "@app/entities/abstract/base-entity.entity";
 import { DriverStatusEnum } from "@app/shared/enums";
 
 @Entity({ name: "Driver" })
