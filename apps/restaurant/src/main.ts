@@ -1,12 +1,12 @@
 import { NestFactory } from "@nestjs/core";
-import { RestaurantModule } from "./restaurant.module";
+import { ShopModule } from "./shop.module";
 import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
 const configService: ConfigService = new ConfigService();
 
 async function bootstrap() {
-  const app = await NestFactory.create(RestaurantModule, { snapshot: true });
+  const app = await NestFactory.create(ShopModule, { snapshot: true });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -14,6 +14,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(configService.getOrThrow<number>("RESTAURANT_PORT"));
+  await app.listen(configService.getOrThrow<number>("SHOP_PORT"));
 }
 bootstrap();

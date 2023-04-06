@@ -9,7 +9,7 @@ export enum UserStatusEnum {
 export enum UserTypeEnum {
   ADMIN = "ADMIN",
   EATER = "EATER",
-  RESTAURANT = "RESTAURANT",
+  SHOP = "SHOP",
   DRIVER = "DRIVER",
 }
 
