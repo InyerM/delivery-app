@@ -5,6 +5,12 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "config": {
+    "migrations_dir_admin": "./libs/shared/src/databases/admin/migrations/migration",
+    "datasource_dir_admin": "./libs/shared/src/databases/admin/data-source.ts",
+    "migrations_dir_default": "./libs/shared/src/databases/default/migrations/migration",
+    "datasource_dir_default": "./libs/shared/src/databases/default/data-source.ts"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
@@ -17,7 +23,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/delivery-app/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/delivery-app/test/jest-e2e.json",
+    "typeorm": "cross-var typeorm-ts-node-esm",
+    "generate:migration-admin": "yarn typeorm migration:generate $npm_package_config_migrations_dir_admin -d $npm_package_config_datasource_dir_admin",
+    "run:migration-admin": "yarn typeorm migration:run -d $npm_package_config_datasource_dir_admin",
+    "revert:migration-admin": "yarn typeorm migration:revert -d $npm_package_config_datasource_dir_admin",
+    "generate:migration-default": "yarn typeorm migration:generate $npm_package_config_migrations_dir_default -d $npm_package_config_datasource_dir_default",
+    "run:migration-default": "yarn typeorm migration:run -d $npm_package_config_datasource_dir_default",
+    "revert:migration-default": "yarn typeorm migration:revert -d $npm_package_config_datasource_dir_default"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -29,6 +42,7 @@
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "cross-var": "^1.1.0",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
@@ -40,6 +54,7 @@
     "@nestjs/testing": "^9.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
+    "@types/glob": "^8.1.0",
     "@types/jest": "29.2.4",
     "@types/node": "18.11.18",
     "@types/supertest": "^2.0.11",
