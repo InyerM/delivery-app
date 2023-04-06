@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AdminController } from './admin.controller';
-import { AdminService } from './admin.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { AdminController } from "./admin.controller";
+import { AdminService } from "./admin.service";
 
-describe('AdminController', () => {
+describe("AdminController", () => {
   let adminController: AdminController;
 
   beforeEach(async () => {
@@ -14,9 +14,9 @@ describe('AdminController', () => {
     adminController = app.get<AdminController>(AdminController);
   });
 
-  describe('root', () => {
+  describe("root", () => {
     it('should return "Hello World!"', () => {
-      expect(adminController.getHello()).toBe('Hello World!');
+      expect(adminController.getHello()).toBe("Hello World!");
     });
   });
 });
