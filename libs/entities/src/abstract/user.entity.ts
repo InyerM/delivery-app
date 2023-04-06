@@ -76,6 +76,7 @@ export abstract class UserEntity extends BaseEntity {
     name: "userType",
     type: "enum",
     enum: UserTypeEnum,
+    default: UserTypeEnum.EATER,
   })
   userType: UserTypeEnum;
 
@@ -93,11 +94,13 @@ export abstract class UserEntity extends BaseEntity {
   })
   userTypeUpdatedAt: Date;
 
+  @Exclude()
   @BeforeInsert()
   hashPassword = async (): Promise<void> => {
     this.password = await bcrypt.hash(this.password, 10);
   };
 
+  @Exclude()
   @AfterUpdate()
   updateUserType = (): void => {
     this.userTypeUpdatedAt = new Date();
