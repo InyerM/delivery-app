@@ -9,12 +9,14 @@ import { UserLogin } from "./user-login/user-login.entity";
 import { UserVerifiedInfo } from "./user-verified-info/user-verified-info.entity";
 import { Booking } from "./booking/booking.entity";
 import { BookingLocation } from "./booking-location/booking-location.entity";
+import { Order } from "./order/order.entity";
 
 export const defaultEntities: MixedList<Function | string | EntitySchema> = [
   Booking,
   BookingLocation,
   Driver,
   DriverReview,
+  Order,
   Shop,
   ShopReview,
   User,

@@ -3,6 +3,7 @@ export * from "./booking/booking.entity";
 export * from "./booking-location/booking-location.entity";
 export * from "./driver/driver.entity";
 export * from "./driver-review/driver-review.entity";
+export * from "./order/order.entity";
 export * from "./shop/shop.entity";
 export * from "./shop-review/shop-review.entity";
 export * from "./user/user.entity";
