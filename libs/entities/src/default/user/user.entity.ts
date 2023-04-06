@@ -7,6 +7,7 @@ import { UserVerifiedInfo } from "../user-verified-info/user-verified-info.entit
 import { ShopReview } from "../shop-review/shop-review.entity";
 import { DriverReview } from "../driver-review/driver-review.entity";
 import { UserEntity } from "@app/entities/abstract/user.entity";
+import { Order } from "../order/order.entity";
 
 @Entity({ name: "User" })
 @Unique(["phoneNumber", "phoneCountryPrefix"])
@@ -35,4 +36,7 @@ export class User extends UserEntity {
     cascade: true,
   })
   driverReviews: DriverReview[];
+
+  @OneToMany(() => Order, (order) => order.id)
+  orders: Order[];
 }

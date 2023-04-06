@@ -20,3 +20,9 @@ export enum PaymentStatusEnum {
   COMPLETED = "COMPLETED",
   FAILED = "FAILED",
 }
+
+export enum DeliveryTypeEnum {
+  DELIVERY = "DELIVERY",
+  PICKUP = "PICKUP",
+  IN_PLACE = "IN_PLACE",
+}

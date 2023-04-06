@@ -6,7 +6,7 @@ import { User } from "../user/user.entity";
 
 @Entity({ name: "ShopReview" })
 export class ShopReview extends ReviewEntity {
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id, { cascade: true })
   @JoinColumn({ name: "authorId" })
   author: User;
 

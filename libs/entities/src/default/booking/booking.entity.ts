@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
+import { BeforeInsert, Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
 import { Shop } from "../shop/shop.entity";
 import { BookingLocation } from "../booking-location/booking-location.entity";
@@ -9,7 +9,9 @@ import {
   DistanceTypeEnum,
   PaymentStatusEnum,
   CurrencyEnum,
+  DeliveryTypeEnum,
 } from "@app/shared/enums";
+import { Order } from "../order/order.entity";
 
 @Entity({ name: "Booking" })
 export class Booking extends BaseEntity {
@@ -34,9 +36,9 @@ export class Booking extends BaseEntity {
   @Column({ name: "driverId" })
   driverId: string;
 
-  // @OneToOne(() => Order, (order) => order.id, { cascade: true })
-  // @JoinColumn({ name: "orderId" })
-  // order: Order
+  @OneToOne(() => Order, (order) => order.id, { cascade: true })
+  @JoinColumn({ name: "orderId" })
+  order: Order;
 
   @Column({ name: "orderId" })
   orderId: string;
@@ -61,6 +63,13 @@ export class Booking extends BaseEntity {
 
   @Column({ name: "promCodeId" })
   promCodeId: string;
+
+  // @OneToOne(() => Refund, (refund) => refund.id, { cascade: true })
+  // @JoinColumn({ name: "refundId" })
+  // refund: Refund
+
+  @Column({ name: "refundId" })
+  refundId: string;
 
   @OneToOne(() => BookingLocation, (bookingLocation) => bookingLocation.id, { cascade: true })
   @JoinColumn({ name: "userLocationId" })
@@ -131,8 +140,8 @@ export class Booking extends BaseEntity {
   @Column({ name: "bookingCancelledAt", type: "timestamp", nullable: true })
   bookingCancelledAt: Date;
 
-  @Column({ name: "assingDeliveryAt", type: "timestamp", nullable: true })
-  assingDeliveryAt: Date;
+  @Column({ name: "assignDeliveryAt", type: "timestamp", nullable: true })
+  assignDeliveryAt: Date;
 
   @Column({ name: "bookingPickUpAt", type: "timestamp", nullable: true })
   bookingPickUpAt: Date;
@@ -142,21 +151,6 @@ export class Booking extends BaseEntity {
 
   @Column({ name: "totalDistance", type: "float" })
   totalDistance: number;
-
-  @Column({ name: "userServiceFare", type: "float", default: 0 })
-  userServiceFare: number;
-
-  @Column({ name: "shopServiceFare", type: "float", default: 0 })
-  shopServiceFare: number;
-
-  @Column({ name: "driverServiceFare", type: "float", default: 0 })
-  driverServiceFare: number;
-
-  @Column({ name: "subtotal", type: "float" })
-  subtotal: number;
-
-  @Column({ name: "total", type: "float" })
-  total: number;
 
   @Column({
     name: "paymentStatus",
@@ -176,4 +170,56 @@ export class Booking extends BaseEntity {
 
   @Column({ name: "notes", type: "text", nullable: true })
   notes: string;
+
+  @Column({ name: "isPaid", type: "boolean", default: false })
+  isPaid: boolean;
+
+  @Column({ name: "isPaidForDelivery", type: "boolean", default: false })
+  isPaidForDelivery: boolean;
+
+  @Column({ name: "isRefund", type: "boolean", default: false })
+  isRefund: boolean;
+
+  @Column({ name: "expectedDeliveryTime", type: "float" })
+  expectedDeliveryTime: number;
+
+  @Column({
+    name: "deliveryType",
+    type: "enum",
+    enum: DeliveryTypeEnum,
+    default: DeliveryTypeEnum.IN_PLACE,
+  })
+  deliveryType: DeliveryTypeEnum;
+
+  @Column({ name: "taxPercent", type: "float", default: 0 })
+  taxPercent: number;
+
+  @Column({ name: "taxAmount", type: "float", default: 0 })
+  taxAmount: number;
+
+  @Column({ name: "discountPercent", type: "float", default: 0 })
+  discountPercent: number;
+
+  @Column({ name: "discountAmount", type: "float", default: 0 })
+  discountAmount: number;
+
+  @Column({ name: "userServiceFare", type: "float", default: 0 })
+  userServiceFare: number;
+
+  @Column({ name: "shopServiceFare", type: "float", default: 0 })
+  shopServiceFare: number;
+
+  @Column({ name: "driverServiceFare", type: "float", default: 0 })
+  driverServiceFare: number;
+
+  @Column({ name: "subtotal", type: "float", default: 0 })
+  subtotal: number;
+
+  @Column({ name: "total", type: "float", default: 0 })
+  total: number;
+
+  @BeforeInsert()
+  async calculateFares() {
+    this.total = this.subtotal + this.taxAmount - this.discountAmount;
+  }
 }
