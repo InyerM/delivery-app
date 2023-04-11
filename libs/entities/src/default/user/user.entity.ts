@@ -15,8 +15,8 @@ export class User extends UserEntity {
   @OneToOne(() => UserProfile, (userProfile) => userProfile.id, { cascade: true })
   userProfile: UserProfile;
 
-  @OneToOne(() => UserLogin, (userLogin) => userLogin.id, { cascade: true })
-  userLogin: UserLogin;
+  @OneToMany(() => UserLogin, (userLogin) => userLogin.id, { cascade: true })
+  userLogins: UserLogin[];
 
   @OneToOne(() => Shop, (shop) => shop.id)
   shop: Shop;

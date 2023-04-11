@@ -1,7 +1,7 @@
 import { Strategy } from "passport-local";
 import { PassportStrategy } from "@nestjs/passport";
 import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
-import { AuthService } from "./auth.service";
+import { AuthService } from "../auth.service";
 import { User } from "@app/entities/default";
 import { validateCredentials } from "@app/shared";
 

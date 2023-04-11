@@ -1,5 +1,5 @@
 import { User } from "@app/entities/default";
-import { UseUser } from "@app/shared/decorators";
+import { UseToken, UseUser } from "@app/shared/decorators";
 import {
   Body,
   ClassSerializerInterceptor,
@@ -11,6 +11,8 @@ import {
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/sign-up.dto";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
+import { LoginResponse } from "./auth.types";
+import { AuthGuard } from "./guards";
 
 @Controller("auth")
 @UseInterceptors(ClassSerializerInterceptor)
@@ -19,12 +21,18 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post("login")
-  async login(@UseUser() user: User) {
-    return user;
+  async login(@UseUser() user: User): Promise<LoginResponse> {
+    return this._authService.login(user);
   }
 
   @Post("sign-up")
   async signUp(@Body() signUpDto: SignUpDto) {
     return this._authService.signUp(signUpDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post("logout")
+  async logout(@UseUser() user: User, @UseToken() token: string): Promise<void> {
+    return this._authService.logout(user, token);
   }
 }
